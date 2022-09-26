@@ -54,16 +54,13 @@ class ADP_Auto_Delete_Post {
 
     // callback function called in the add_meta_box function
     public function adp_html_output_for_auto_delete_meta_box( $post ) {
-        if( ! empty( 'auto_delete_post_time_key' ) ) { 
             if( ! empty( $_GET['post'] ) ) {
                 $current_post_id = sanitize_text_field( $_GET['post'] );
+                $meta_date_time_value = get_post_meta( $current_post_id, 'auto_delete_post_time_key', true );
             }
-
-            $meta_date_time_value = get_post_meta( get_the_ID(), 'auto_delete_post_time_key', true );
-        }
         ?>
             <label for="adp-time"><?php echo esc_html__( 'Select Time', 'auto-delete-post' ); ?></label>
-            <input class="adp-input" type="datetime-local" name="adp-time" id="adp-time" value="<?php echo esc_attr( $meta_date_time_value ); ?>" />
+            <input class="adp-input" type="datetime-local" name="adp-time" id="adp-time" value="<?php if( !empty( $meta_date_time_value ) ) { echo esc_attr( $meta_date_time_value ); } ?>" />
         <?php 
     }
 
@@ -79,25 +76,28 @@ class ADP_Auto_Delete_Post {
 $obj = new ADP_Auto_Delete_Post(); // class initialization
 
 // auto post deletion mechanism    
-add_action( 'admin_head', 'delete' );
+add_action( 'wp_head', 'delete' );
 function delete() {
-    $custom_query = new WP_Query( array(
-        'post_type' => 'post'
+    $adp_custom_query = new WP_Query( array(
+        'post_type' => 'post',
+        'posts_per_page' => -1,
     ));
-    while( $custom_query->have_posts() ) {
-        $custom_query->the_post();
-        
-        $unique_post_id = get_the_ID();
-        $meta_date_time_value = get_post_meta( $unique_post_id, 'auto_delete_post_time_key', true );
-        $converted_user_date_time = strtotime( $meta_date_time_value );
-        $converted_in_date_format = date('Y-m-d H:i', $converted_user_date_time).' ';
-        $final_user_date_time = strtotime( $converted_in_date_format );
-        
-        $current_server_time = current_time('timestamp');
-
-        if( $current_server_time >= $final_user_date_time  ) {
-                wp_delete_post( $unique_post_id );
+    if( $adp_custom_query->have_posts() ) {
+        while( $adp_custom_query->have_posts() ) {
+            $adp_custom_query->the_post();
+            
+            $unique_post_id = get_the_ID();
+            $final_meta_value = get_post_meta( $unique_post_id, 'auto_delete_post_time_key', true );
+            $converted_user_date_time = strtotime( $final_meta_value );
+            $converted_in_date_format = date('Y-m-d H:i', $converted_user_date_time).' ';
+            $final_user_date_time = strtotime( $converted_in_date_format );
+            $current_server_time = current_time('timestamp');
+            if( $current_server_time >= $final_user_date_time && $final_user_date_time > 0 ) {
+                    wp_delete_post( $unique_post_id );
+            }
         }
     }
+    
+    wp_reset_postdata();
     
 }
