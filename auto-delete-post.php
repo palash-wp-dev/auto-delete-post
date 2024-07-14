@@ -14,6 +14,36 @@
  * Domain Path:       /languages
  */
 
+// quick_edit_custom_box allows to add HTML in Quick Edit
+add_action( 'quick_edit_custom_box',  'misha_quick_edit_fields', 10, 2 );
+
+function misha_quick_edit_fields( $column_name, $post_type ) {
+    $product_price = get_post_meta( get_the_ID(), 'product_price', true );
+    ?>
+         <fieldset class="inline-edit-col-left">
+            <div class="inline-edit-col">
+                <label>
+                    <span class="title">Price</span>
+                    <input type="text" name="price" value="<?php echo $product_price; ?>">
+                </label>
+            </div>
+         </fieldset>
+     <?php
+}
+
+add_action( 'save_post', 'misha_quick_edit_save' );
+
+function misha_quick_edit_save( $post_id ){
+    // check inlint edit nonce
+    if ( ! wp_verify_nonce( $_POST[ '_inline_edit' ], 'inlineeditnonce' ) ) {
+        return;
+    }
+
+    // update the price
+    $price = ! empty( $_POST[ 'price' ] ) ? absint( $_POST[ 'price' ] ) : 0;
+    update_post_meta( $post_id, 'product_price', $price );
+}
+
 /**
  * All constants
  */
@@ -51,7 +81,6 @@ function appsero_init_tracker_auto_delete_post() {
 }
 
 appsero_init_tracker_auto_delete_post();
-
 
 /**
  * Creating options of all post type to choose from, where this functionality will be available
