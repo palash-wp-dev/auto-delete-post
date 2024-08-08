@@ -1,16 +1,16 @@
 <?php
 /**
- *
  * @package AutoDeletePost
  *
  * Plugin Name:       Auto Delete Post
  * Plugin URI:        https://wordpress.org/plugin/auto-delete-post
  * Description:       This plugin automatically deletes a post after a certain time
- * Version:           1.1.3
+ * Version:           1.1.4
  * Requires at least: 5.2
+ * Tested up to:      6.6.1
  * Requires PHP:      7.2
  * Author:            Shahadat Hossain
- * Author URI:        https://www.linkedin.com/in/palash-dev/
+ * Author URI:        https://www.linkedin.com/in/palash-wp/
  * License:           GPL v2 or later
  * License URI:       https://www.gnu.org/licenses/gpl-2.0.html
  * Text Domain:       auto-delete-post
@@ -23,7 +23,7 @@ if ( ! defined( 'ABSPATH' ) ) exit; // EXIT IF ACCESSED DIRECTLY
  * All constants
  */
 // Constants for version
-$adp_version = '1.1.2';
+$adp_version = '1.1.4';
 define( 'ADP_VERSION', $adp_version );
 
 // Constants for css file path

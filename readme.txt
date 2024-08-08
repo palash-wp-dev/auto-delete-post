@@ -4,9 +4,9 @@ Donate link: https://buymeacoffee.com/palash_wp
 Tags: automatic post delete, automatic delete post, delete post, delete page, delete custom post type, post delete, delete post after a certain time
 Requires PHP: 7.2
 Requires at least: 5.2
-Tested up to: 6.4.3
-Version: 1.1.3
-Stable tag: 1.1.3
+Tested up to: 6.6.1
+Version: 1.1.4
+Stable tag: 1.1.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -34,14 +34,17 @@ Yes
 
 1. Set the default time zone from the WordPress settings option to work correctly according to your timezone
 2. Select a time and date from the custom meta box field of this plugin
-3. Select any main pages of WordPress from the checkbox options in the menu page where you want to add this functionality
+3. You can also select the time from the quick edit option, no need to go to the edit section of any post.
+4. Select any main pages of WordPress from the checkbox options in the menu page where you want to add this functionality
 
 == Changelog ==
+= 1.1.4 =
+Added date time field in the quick edit section of post
 
 = 1.1.3 =
 Solved unable to restore post from trash issue.
 
 == Upgrade Notice ==
 
-= 1.1.3 =
+= 1.1.4 =
 There is a upgrade available.
