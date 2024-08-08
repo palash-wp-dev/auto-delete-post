@@ -1,5 +1,5 @@
 <?php 
-if ( ! definded( 'ABSPATH' ) ) exit; // EXIT IF ACCESSED DIRECTLY
+if ( ! defined( 'ABSPATH' ) ) exit; // EXIT IF ACCESSED DIRECTLY
 
 class ADP_Quick_Edit {
 
@@ -27,13 +27,13 @@ class ADP_Quick_Edit {
      */
 	public function adp_quick_edit_fields( $column_name, $post_type ) {
         if ( $column_name == 'adp_post_deletion_time_column' ) {
-            $delete_time = get_post_meta( get_the_ID(), 'adp-time', true );
+            $delete_time = get_post_meta( get_the_ID(), 'auto_delete_post_time_key', true );
             ?>
             <fieldset class="inline-edit-col-left">
                 <div class="inline-edit-col">
                     <label>
                         <span class="title">Auto Delete Time</span>
-                        <input type="datetime-local" name="adp-time" value="<?php echo esc_attr( $delete_time ); ?>">
+                        <input type="datetime-local" id="adp-time" name="adp-time" value="<?php echo esc_attr( $delete_time ); ?>">
                     </label>
                 </div>
             </fieldset>
@@ -58,7 +58,7 @@ class ADP_Quick_Edit {
         // Update the auto delete time
         if ( isset( $_POST['adp-time'] ) ) {
             $auto_delete_time = sanitize_text_field( $_POST['adp-time'] );
-            update_post_meta( $post_id, 'adp-time', $auto_delete_time );
+            update_post_meta( $post_id, 'auto_delete_post_time_key', $auto_delete_time );
         }
     }
 }

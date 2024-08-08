@@ -28,6 +28,7 @@ define( 'ADP_VERSION', $adp_version );
 
 // Constants for css file path
 define( 'ADP_CSS', plugin_dir_url( __FILE__ ) . 'assets/css/' );
+define( 'ADP_JS', plugin_dir_url( __FILE__ ) . 'assets/js/' );
 
 // Include necessary files
 require_once plugin_dir_path( __FILE__ ) . 'includes/class-auto-delete-option-selection.php';

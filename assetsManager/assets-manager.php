@@ -37,5 +37,13 @@ class Assets_Manager {
      */
     public function adp_all_scripts_inclusion() {
         wp_enqueue_style( $this->adp_assets_prefix( 'style' ), ADP_CSS . 'style.css', [], ADP_VERSION, 'all' );
+
+        wp_enqueue_script(
+            $this->adp_assets_prefix( 'script' ),
+            ADP_JS . 'adp-quick-edit.js',
+            ['jquery'],
+            ADP_VERSION,
+            true
+        );
     }
 }
