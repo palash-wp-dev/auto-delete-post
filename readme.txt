@@ -4,9 +4,9 @@ Donate link: https://buymeacoffee.com/palash_wp
 Tags: automatic post delete, automatic delete post, delete post, delete page, delete custom post type, post delete, delete post after a certain time
 Requires PHP: 7.2
 Requires at least: 5.2
-Tested up to: 6.6.1
-Version: 1.1.4
-Stable tag: 1.1.4
+Tested up to: 6.7.2
+Version: 1.1.5
+Stable tag: 1.1.5
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
