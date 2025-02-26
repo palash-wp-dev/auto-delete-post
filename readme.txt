@@ -38,6 +38,9 @@ Yes
 4. Select any main pages of WordPress from the checkbox options in the menu page where you want to add this functionality
 
 == Changelog ==
+= 1.1.5 =
+Checked compatibilty with latest version of WP
+
 = 1.1.4 =
 Added date time field in the quick edit section of post
 
@@ -46,5 +49,5 @@ Solved unable to restore post from trash issue.
 
 == Upgrade Notice ==
 
-= 1.1.4 =
+= 1.1.5 =
 There is a upgrade available.
